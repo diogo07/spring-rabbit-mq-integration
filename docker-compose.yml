@@ -1,0 +1,18 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    container_name: rabbitmq_management
+    ports: 
+     - 5672:5672 # CLI tool
+     - 15672:15672 # Communication web 
+    volumes:
+     - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
+    environment:
+     - "RABBITMQ_DEFAULT_USER=admin"
+     - "RABBITMQ_DEFAULT_PASS=admin@admin123"
+    restart: always
+
+volumes:
+  logs-folder:
+    name: ${log_rabbitmq_management}
+    driver: local
